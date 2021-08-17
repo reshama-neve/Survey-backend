@@ -24,8 +24,6 @@ public class UserDetailService implements UserDetailsService {
             System.out.println("User not Found");
             throw new UsernameNotFoundException("No user found !!");
         }
-
-
         return user;
     }
 }

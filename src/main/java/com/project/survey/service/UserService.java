@@ -1,37 +1,15 @@
 package com.project.survey.service;
 
 import com.project.survey.model.User;
-import com.project.survey.repo.UserRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.project.survey.model.UserRole;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Set;
 
 @Service
-public class UserService {
+public interface UserService {
 
+    public User addUser(User user, Set<UserRole> userRoles) throws Exception;
 
-    private final UserRepo userRepo;
-
-    @Autowired
-    public UserService(UserRepo userRepo) {
-        this.userRepo = userRepo;
-    }
-
-    public User addUser(User user) {
-        return userRepo.save(user);
-    }
-
-    public List<User> saveUsers(List<User> users) {
-        return userRepo.saveAll(users);
-    }
-
-    public List<User> allUsers() {
-        return userRepo.findAll();
-    }
-
-    public User getUserById(int id) {
-        return userRepo.findById(id).orElse(null);
-    }
-
+    public User getUser(String username);
 }

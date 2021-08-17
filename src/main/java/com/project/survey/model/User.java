@@ -33,14 +33,13 @@ public class User implements UserDetails
     @JsonIgnore
     private Set<UserRole> userRoles=new HashSet<>();
 
-    public void setUserRoles(Set<UserRole> userRoles) {
-        this.userRoles = userRoles;
-    }
-
     public Set<UserRole> getUserRoles() {
         return userRoles;
     }
 
+    public void setUserRoles(Set<UserRole> userRoles) {
+        this.userRoles = userRoles;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
