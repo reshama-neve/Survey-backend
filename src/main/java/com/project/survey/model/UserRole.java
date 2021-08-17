@@ -1,9 +1,14 @@
 package com.project.survey.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.management.relation.RelationNotification;
 import javax.persistence.*;
 
-
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class UserRole {
 
@@ -23,8 +28,23 @@ public class UserRole {
     @ManyToOne
     private Role role;
 
+    public Long getUserRoleId() {
+        return userRoleId;
+    }
 
-    public RelationNotification getRole() {
-        return null;
+    public void setUserRoleId(Long userRoleId) {
+        this.userRoleId = userRoleId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Role getRole() {
+        return role;
     }
 }

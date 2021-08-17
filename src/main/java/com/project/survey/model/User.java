@@ -28,18 +28,19 @@ public class User implements UserDetails
     private String password;
 
 
+    //user many roles
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy ="user")
+    @JsonIgnore
+    private Set<UserRole> userRoles=new HashSet<>();
+
     public void setUserRoles(Set<UserRole> userRoles) {
         this.userRoles = userRoles;
     }
 
-    //user many roles
-   @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy ="user")
-   @JsonIgnore
-    private Set<UserRole> userRoles=new HashSet<>();
-
     public Set<UserRole> getUserRoles() {
         return userRoles;
     }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
