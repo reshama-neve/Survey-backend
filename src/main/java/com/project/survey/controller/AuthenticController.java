@@ -3,6 +3,7 @@ package com.project.survey.controller;
 import com.project.survey.config.JwtUtils;
 import com.project.survey.model.JwtRequest;
 import com.project.survey.model.JwtResponse;
+import com.project.survey.model.User;
 import com.project.survey.service.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +13,9 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
 @CrossOrigin("*")
@@ -48,6 +48,11 @@ public class AuthenticController {
         UserDetails userDetails =this.userDetailService.loadUserByUsername(jwtRequest.getUsername());
        String token=this.jwtUtil.generateToken(userDetails);
        return ResponseEntity.ok(new JwtResponse(token));
+    }
+
+    @GetMapping("/current-user")
+    public User getCurrentUser(Principal principal){
+        return ((User)this.userDetailService.loadUserByUsername(principal.getName()));
     }
 
 
