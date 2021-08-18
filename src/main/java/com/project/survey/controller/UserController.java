@@ -6,6 +6,7 @@ import com.project.survey.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
@@ -21,6 +22,9 @@ public class UserController {
     @Autowired
     private final UserService userService;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -28,6 +32,8 @@ public class UserController {
 
     @PostMapping("/addUser")
     public User addUser(@RequestBody User user) throws Exception {
+        user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
+
         Set<UserRole> roles =  new HashSet<>();
         Role role = new Role();
         role.setRoleId(45L);
@@ -56,5 +62,7 @@ public class UserController {
 //    public User findUserById(@PathVariable int id) {
 //        return userService.getUserById(id);
 //    }
+
+
 
 }

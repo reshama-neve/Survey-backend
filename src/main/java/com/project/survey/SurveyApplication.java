@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,6 +18,9 @@ public class SurveyApplication implements CommandLineRunner {
 
 	@Autowired
 	private final UserService userService;
+
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	public SurveyApplication(UserService userService) {
 		this.userService = userService;
@@ -30,27 +34,27 @@ public class SurveyApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		System.out.println("Starting Code");
 
-		User user = new User();
-
-		user.setFirst_name("Admin");
-		user.setLast_name("Control");
-		user.setUsername("admin@gmail.com");
-		user.setPassword("Admin123");
-
-		Role role = new Role();
-		role.setRoleId(44L);
-		role.setRoleName("ADMIN");
-
-		Set<UserRole> userRoles = new HashSet<>();
-		UserRole userRole = new UserRole();
-
-		userRole.setRole(role);
-		userRole.setUser(user);
-
-		userRoles.add(userRole);
-
-		User admin = this.userService.addUser(user, userRoles);
-		System.out.println(admin.getUsername());
+//		User user = new User();
+//
+//		user.setFirst_name("Admin");
+//		user.setLast_name("Control");
+//		user.setUsername("admin@gmail.com");
+//		user.setPassword(this.bCryptPasswordEncoder.encode("Admin123"));
+//
+//		Role role = new Role();
+//		role.setRoleId(44L);
+//		role.setRoleName("ADMIN");
+//
+//		Set<UserRole> userRoles = new HashSet<>();
+//		UserRole userRole = new UserRole();
+//
+//		userRole.setRole(role);
+//		userRole.setUser(user);
+//
+//		userRoles.add(userRole);
+//
+//		User admin = this.userService.addUser(user, userRoles);
+//		System.out.println(admin.getUsername());
 
 	}
 }
