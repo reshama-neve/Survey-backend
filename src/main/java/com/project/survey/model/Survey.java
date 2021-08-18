@@ -31,12 +31,15 @@ public class Survey {
     private Date createDate = new Date(System.currentTimeMillis());
     @Column
     private String lastEditedBy;
+    @Column
+    private boolean publish;
+
 
     @ManyToMany
-    @JoinTable(name = "admin_survey",
+    @JoinTable(name = "user_survey",
             joinColumns = @JoinColumn(name = "survey_id"),
-            inverseJoinColumns = @JoinColumn(name = "admin_id"))
-    private List<Admin> admin;
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private List<User> user;
 
 //    @OneToMany(mappedBy = "question", fetch = FetchType.LAZY,
 //            cascade = CascadeType.ALL)

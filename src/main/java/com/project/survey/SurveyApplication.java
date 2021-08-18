@@ -30,27 +30,27 @@ public class SurveyApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		System.out.println("Starting Code");
 
-//		User user = new User();
-//
-//		user.setFirst_name("Admin");
-//		user.setLast_name("Control");
-//		user.setUsername("admin@gmail.com");
-//		user.setPassword("Admin123");
-//
-//		Role role = new Role();
-//		role.setRoleId(44L);
-//		role.setRoleName("ADMIN");
-//
-//		Set<UserRole> userRoles = new HashSet<>();
-//		UserRole userRole = new UserRole();
-//
-//		userRole.setRole(role);
-//		userRole.setUser(user);
-//
-//		userRoles.add(userRole);
-//
-//		User admin = this.userService.addUser(user, userRoles);
-//		System.out.println(admin.getUsername());
+		User user = new User();
+
+		user.setFirst_name("Admin");
+		user.setLast_name("Control");
+		user.setUsername("admin@gmail.com");
+		user.setPassword("Admin123");
+
+		Role role = new Role();
+		role.setRoleId(44L);
+		role.setRoleName("ADMIN");
+
+		Set<UserRole> userRoles = new HashSet<>();
+		UserRole userRole = new UserRole();
+
+		userRole.setRole(role);
+		userRole.setUser(user);
+
+		userRoles.add(userRole);
+
+		User admin = this.userService.addUser(user, userRoles);
+		System.out.println(admin.getUsername());
 
 	}
 }
