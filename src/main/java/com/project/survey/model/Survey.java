@@ -32,7 +32,7 @@ public class Survey {
     @Column
     private String lastEditedBy;
     @Column
-    private boolean publish;
+    private boolean status;
 
 
     @ManyToMany
