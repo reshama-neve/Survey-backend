@@ -1,6 +1,7 @@
 package com.project.survey.controller;
 
 import com.project.survey.model.Question;
+import com.project.survey.model.Survey;
 import com.project.survey.repo.QuestionRepo;
 import com.project.survey.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +78,11 @@ public class QuestionController {
     public ResponseEntity<List<Question>> getAllQuestions(){
         List<Question> questions = questionService.getAllQuestions();
         return new ResponseEntity<>(questions, HttpStatus.OK);
+    }
+
+    @GetMapping("/{question_id}")
+    public Question getQuestionById(@PathVariable int question_id) {
+        return questionService.findQuestionById(question_id);
     }
 
 }

@@ -31,4 +31,9 @@ public class SurveyController {
         List<Survey> surveys = surveyService.getAllSurveys();
         return new ResponseEntity<>(surveys, HttpStatus.OK);
     }
+
+    @GetMapping("/{survey_id}")
+    public Survey getSurveyById(@PathVariable int survey_id) {
+        return surveyService.getSurveyById(survey_id);
+    }
 }
