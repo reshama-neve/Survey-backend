@@ -23,11 +23,14 @@ public class Question {
     private int question_id;
     private String question_text;
     private String answer_type;
+    private String option1;
+    private String option2;
+    private String option3;
+    private String option4;
 
 //    @OneToMany(mappedBy = "question", fetch = FetchType.LAZY,
 //            cascade = CascadeType.ALL)
 //    private Set<QuestionOption> optionSet;
-
 //    @JsonIgnore
 //    @OneToMany(mappedBy = "question")
 //    private List<QuestionOption> questionOptionList;
@@ -35,7 +38,6 @@ public class Question {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "survey_id", nullable = false)
     private Survey survey;
-
 }
 
 

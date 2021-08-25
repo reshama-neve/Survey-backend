@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 //import static com.project.survey.service.ResponseUtil.resourceUri;
 
 @RestController
 @RequestMapping("question")
+@CrossOrigin("*")
 public class QuestionController {
 
     private final QuestionService questionService;
@@ -56,6 +58,7 @@ public class QuestionController {
 //        return authorRepository.findById(authorId)
 //                .map(
 //                        author -> {
+//
 //                            author.setAge(request.getAge());
 //                            author.setBirthDate(request.getBirthDate());
 //                            author.setName(request.getName());
@@ -85,4 +88,15 @@ public class QuestionController {
         return questionService.findQuestionById(question_id);
     }
 
+    @GetMapping("/survey/{survey_id}")
+    public ResponseEntity<?> getQuestionsOfSurvey(@PathVariable("survey_id") int survey_id) {
+        {
+            Survey survey = new Survey();
+            survey.setSurvey_id(survey_id);
+            Set<Question> questionSet = this.questionService.getQuestionsOfSurvey(survey);
+            return ResponseEntity.ok(questionSet);
+        }
+    }
 }
+
+

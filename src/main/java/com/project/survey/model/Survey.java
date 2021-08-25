@@ -33,6 +33,8 @@ public class Survey {
     private String lastEditedBy;
     @Column
     private boolean status;
+//    @Column
+//    private boolean editstat;
 
 
     @ManyToMany

@@ -1,11 +1,13 @@
 package com.project.survey.service;
 
 import com.project.survey.model.Question;
+import com.project.survey.model.Survey;
 import com.project.survey.repo.QuestionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class QuestionService {
@@ -29,4 +31,7 @@ public class QuestionService {
         return question;
     }
 
+    public Set<Question> getQuestionsOfSurvey(Survey survey) {
+        return this.questionRepo.findBySurvey(survey);
+    }
 }
