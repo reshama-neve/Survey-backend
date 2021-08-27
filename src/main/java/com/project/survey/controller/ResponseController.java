@@ -1,6 +1,8 @@
 package com.project.survey.controller;
 
+import com.project.survey.model.Question;
 import com.project.survey.model.Response;
+import com.project.survey.model.Survey;
 import com.project.survey.repo.ResponseRepo;
 import com.project.survey.service.ResponseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("response")
@@ -42,6 +45,16 @@ public class ResponseController {
         Response response1=responseService.getResponseById(response_id);
         return new ResponseEntity<>(response1,HttpStatus.CREATED);
 
+    }
+
+    @GetMapping("/question/{question_id}")
+    public ResponseEntity<?> getResponsesofQuestion(@PathVariable("question_id") int question_id) {
+        {
+            Question question = new Question();
+            question.setQuestion_id(question_id);
+            Set<Response> responseSet = this.responseService.getResponsesofQuestion(question);
+            return ResponseEntity.ok(responseSet);
+        }
     }
 
 }
