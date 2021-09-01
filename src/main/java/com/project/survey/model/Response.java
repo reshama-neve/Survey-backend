@@ -4,11 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
@@ -30,18 +26,18 @@ public class Response {
 //    @JoinColumn(name = "surveyResponse_id")
 //    private SurveyResponse surveyResponse;
 
-    @OneToOne
-    @JoinColumn(name = "question_id")
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "question_id", nullable = false)
     private Question question;
 
-    @OneToOne
-    @JoinColumn(name = "survey_id")
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "survey_id", nullable = false)
     private Survey survey;
 
     //    @OneToOne
 //    @JoinColumn(name = "user_id")
 //    private User user;
-    @OneToOne
-    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 }
