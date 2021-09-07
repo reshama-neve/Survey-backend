@@ -15,6 +15,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("response")
+@CrossOrigin("*")
 public class ResponseController {
 
     private final ResponseRepo responseRepo;
