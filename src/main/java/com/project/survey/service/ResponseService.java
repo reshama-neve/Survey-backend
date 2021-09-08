@@ -2,6 +2,7 @@ package com.project.survey.service;
 
 import com.project.survey.model.Question;
 import com.project.survey.model.Response;
+import com.project.survey.model.User;
 import com.project.survey.repo.ResponseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,5 +35,9 @@ public class ResponseService {
 
     public Set<Response> getResponsesofQuestion(Question question) {
         return this.responseRepo.findByQuestion(question);
+    }
+
+    public Set<Response> getResponsesofUser(User user) {
+        return this.responseRepo.findByUser(user);
     }
 }

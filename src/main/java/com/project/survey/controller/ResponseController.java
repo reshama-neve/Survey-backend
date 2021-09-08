@@ -3,6 +3,7 @@ package com.project.survey.controller;
 import com.project.survey.model.Question;
 import com.project.survey.model.Response;
 import com.project.survey.model.Survey;
+import com.project.survey.model.User;
 import com.project.survey.repo.ResponseRepo;
 import com.project.survey.service.ResponseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,16 @@ public class ResponseController {
             Question question = new Question();
             question.setQuestion_id(question_id);
             Set<Response> responseSet = this.responseService.getResponsesofQuestion(question);
+            return ResponseEntity.ok(responseSet);
+        }
+    }
+
+    @GetMapping("/user/{user_id}")
+    public ResponseEntity<?> getResponsesofUser(@PathVariable("user_id") int user_id) {
+        {
+            User user = new User();
+            user.setUser_id(user_id);
+            Set<Response> responseSet = this.responseService.getResponsesofUser(user);
             return ResponseEntity.ok(responseSet);
         }
     }
